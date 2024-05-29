@@ -1,0 +1,1 @@
+/Users/jonathan/Documents/Desktop/GT\ Master\ Files/Summer\ 2024/Understanding\ Rust/minigrep/target/debug/minigrep: /Users/jonathan/Documents/Desktop/GT\ Master\ Files/Summer\ 2024/Understanding\ Rust/minigrep/src/main.rs
