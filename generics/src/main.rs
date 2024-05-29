@@ -16,7 +16,7 @@ impl<T, U> Point<T, U> {
         &self.y
     }
 
-    fn mixup<X2, Y2>(self, other: Point<X2, Y2>) -> Point(T, Y2) {
+    fn mixup<X2, Y2>(self, other: Point<X2, Y2>) -> Point<T, Y2> {
         Point {
             x: self.x,
             y: other.y,
@@ -26,9 +26,9 @@ impl<T, U> Point<T, U> {
 
 // constrained point
 
-impl<f64, f64> {
+impl Point<f64, f64> {
     fn dist_from_origin(&self) -> f64 {
-        (self.x.powi(2) + self.y.pow1(2)).sqrt()
+        (self.x.powi(2) + self.y.powi(2)).sqrt()
     }
 }
 enum Option<T> {
@@ -70,8 +70,10 @@ fn main() {
 
     // Use the impl from the enum
 
-    let point1 = new::("xCoord", 5);
-    println("point1.x = {}, point1.y = {}", point1.x(), point1.y())
+    let point1 = Point::new("xCoord", 5);
+
+    println!("point1.x = {}, point1.y = {}", point1.x(), point1.y());
+
 }
 
 fn largest_func(list: &[i32]) -> &i32 {
