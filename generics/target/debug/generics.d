@@ -1,0 +1,1 @@
+/Users/jonathan/Documents/Desktop/GT\ Master\ Files/Summer\ 2024/Understanding\ Rust/generics/target/debug/generics: /Users/jonathan/Documents/Desktop/GT\ Master\ Files/Summer\ 2024/Understanding\ Rust/generics/src/main.rs
