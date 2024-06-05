@@ -1,6 +1,6 @@
 use std::env; // used for reading command line arguments
 use std::fs;
-
+use std::process;
 
 fn main() {
     // .collect turns it into a vector
@@ -8,25 +8,37 @@ fn main() {
     let args: Vec<String> = env::args().collect(); 
     dbg!(&args); // print args in debug 
 
-    let config = parse_config(args)
+    let config = Config::build(&args).unwrap_or_else(|err| {
+        println!("Problem parsing arguments: {err}");
+        process::exit(1);
+    });
 
     println!("Searching for {} filepath", config.query);
     println!("In file {}", config.file_path);
 
-    let contents = fs::read_to_string(filepath)
-        .expect("Should be able to read the file");
+    run(config);
+}
+
+fn run(config: Config) {
+    let contents = fs::read_to_string(config.file_path)
+        .expect("Should have been able to read the file");
     
-    println!("\nWith text: \n{contents}");
+    println!("\n With text: \n{contents}");
 }
 
 // create a way to make it so creading Config struct is more obvious
 
 impl Config {
-    fn new(args: &[String]) -> Config {
-        let query = args[1].clone();
-        let filepath = args[2].clone();
+    fn build(args: &[String]) -> Result<Config, &'static str> {
 
-        Config {query, filepath}
+        if args.len() < 3 {
+            return Err("Not enough arguments")
+        }
+
+        let query = args[1].clone();
+        let file_path = args[2].clone();
+
+        Ok(Config {query, file_path})
     }
 }
 
