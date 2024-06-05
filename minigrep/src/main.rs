@@ -1,4 +1,6 @@
 use std::env; // used for reading command line arguments
+use std::fs;
+
 
 fn main() {
     // .collect turns it into a vector
@@ -12,5 +14,8 @@ fn main() {
     println!("Searching for {} filepath", query);
     println!("In file {}", filepath);
 
+    let contents = fs::read_to_string(filepath)
+        .expect("Should be able to read the file");
     
+    println!("\nWith text: \n{contents}");
 }
